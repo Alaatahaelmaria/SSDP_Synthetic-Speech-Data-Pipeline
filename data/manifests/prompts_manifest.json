@@ -1,0 +1,24 @@
+{
+  "stage": "prompt_generation",
+  "total": 179,
+  "domains": {
+    "daily_conversation": 40,
+    "technology": 32,
+    "food_and_restaurants": 26,
+    "transportation": 19,
+    "shopping": 21,
+    "health": 22,
+    "education": 11,
+    "social_media": 8
+  },
+  "styles": {
+    "casual": 88,
+    "formal": 22,
+    "code_switched": 56,
+    "fast_speech": 13
+  },
+  "code_switched": 56,
+  "with_numbers": 2,
+  "generated_at": "2026-05-11T06:45:05.881777+00:00",
+  "output_file": "C:\\Users\\Alaat\\.gemini\\antigravity\\scratch\\ssdp\\data\\prompts\\prompts.jsonl"
+}

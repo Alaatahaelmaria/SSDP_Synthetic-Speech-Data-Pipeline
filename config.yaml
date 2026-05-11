@@ -1,0 +1,113 @@
+
+# ─────────────────────────────────────────────────────────────
+#  Synthetic Speech Data Pipeline  (S.S.D.P.)  ·  config.yaml
+# ─────────────────────────────────────────────────────────────
+
+pipeline:
+  name: "SSDP-EgyptianArabic"
+  version: "1.0.0"
+  seed: 42
+
+paths:
+  prompts_dir:    "data/prompts"
+  audio_dir:      "data/audio"
+  manifests_dir:  "data/manifests"
+  export_dir:     "data/export"
+  logs_dir:       "logs"
+  cache_dir:      ".cache"
+
+# ── Stage 1 · Prompt Generation ──────────────────────────────
+prompts:
+  total_count: 200
+  domains:
+    - name: "daily_conversation"
+      weight: 0.25
+    - name: "technology"
+      weight: 0.15
+    - name: "food_and_restaurants"
+      weight: 0.15
+    - name: "transportation"
+      weight: 0.15
+    - name: "shopping"
+      weight: 0.10
+    - name: "health"
+      weight: 0.10
+    - name: "education"
+      weight: 0.05
+    - name: "social_media"
+      weight: 0.05
+  styles:
+    - "formal"
+    - "casual"
+    - "code_switched"    # Arabic + English mixing
+    - "fast_speech"      # contracted / merged words
+  length_distribution:
+    short:   0.30    # < 5 words
+    medium:  0.50    # 5-15 words
+    long:    0.20    # > 15 words
+
+# ── Stage 2 · TTS Synthesis ──────────────────────────────────
+tts:
+  engine: "edge-tts"          # options: edge-tts | gtts | system
+  voice_pool:
+    - "ar-EG-SalmaNeural"     # Egyptian Arabic female
+    - "ar-EG-ShakirNeural"    # Egyptian Arabic male
+  rate:   "+0%"               # speech rate  (-50% to +100%)
+  volume: "+0%"               # volume delta (-50% to +100%)
+  pitch:  "+0Hz"              # pitch shift
+  batch_size: 10              # concurrent synthesis tasks
+  max_retries: 3              # per-sample retry limit
+  retry_delay_sec: 2
+  timeout_sec: 30
+  checkpoint_every: 25        # save progress every N samples
+
+# ── Stage 3 · Review ─────────────────────────────────────────
+review:
+  server_host: "0.0.0.0"
+  server_port: 8000
+  auto_open_browser: true
+  flags:
+    - wrong_pronunciation
+    - english_word_issue
+    - dialect_mismatch
+    - unnatural_speech
+    - background_noise
+    - clipping
+    - too_fast
+    - too_slow
+
+# ── Stage 4 · Export ─────────────────────────────────────────
+export:
+  format: "huggingface"       # options: huggingface | ljspeech | csv | all
+  audio_format: "wav"         # wav | mp3 | flac
+  sample_rate: 22050
+  include_rejected: false
+  include_pending: false
+  split:
+    train: 0.80
+    validation: 0.10
+    test: 0.10
+  metadata_fields:
+    - id
+    - text
+    - text_normalized
+    - audio_path
+    - duration_sec
+    - voice
+    - domain
+    - style
+    - contains_code_switching
+    - contains_numbers
+    - word_count
+    - review_status
+    - quality_score
+    - dialect
+
+# ── Quality Signals ───────────────────────────────────────────
+quality:
+  min_duration_sec:  0.5
+  max_duration_sec:  15.0
+  min_word_count:    2
+  max_word_count:    40
+  snr_threshold_db:  20.0     # signal-to-noise ratio floor
+  enable_snr_check:  true

@@ -1,0 +1,35 @@
+# ── Generated data (large / runtime-produced files) ───────────
+data/audio/
+data/export/
+.cache/
+
+# ── Keep manifest structure but not heavy checkpoint state ─────
+data/manifests/synthesis_checkpoint.json
+data/manifests/synthesis_results.jsonl
+
+# ── Keep a small sample of final data for demonstration ────────
+# (data/export/sample/ is intentionally NOT ignored — it's the deliverable)
+# Uncomment below if you want to ignore it too:
+# data/export/sample/
+
+# ── Python ─────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# ── Logs ───────────────────────────────────────────────────────
+logs/
+
+# ── OS / Editor ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
