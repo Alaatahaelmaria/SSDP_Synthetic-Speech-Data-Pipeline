@@ -1,24 +1,24 @@
 {
   "stage": "prompt_generation",
-  "total": 179,
+  "total": 184,
   "domains": {
-    "daily_conversation": 40,
-    "technology": 32,
-    "food_and_restaurants": 26,
-    "transportation": 19,
-    "shopping": 21,
-    "health": 22,
-    "education": 11,
-    "social_media": 8
+    "daily_conversation": 45,
+    "technology": 28,
+    "food_and_restaurants": 35,
+    "transportation": 21,
+    "shopping": 18,
+    "health": 20,
+    "education": 8,
+    "social_media": 9
   },
   "styles": {
-    "casual": 88,
-    "formal": 22,
-    "code_switched": 56,
-    "fast_speech": 13
+    "casual": 90,
+    "formal": 25,
+    "code_switched": 55,
+    "fast_speech": 14
   },
-  "code_switched": 56,
-  "with_numbers": 2,
-  "generated_at": "2026-05-11T06:45:05.881777+00:00",
+  "code_switched": 55,
+  "with_numbers": 3,
+  "generated_at": "2026-05-11T08:10:02.704075+00:00",
   "output_file": "C:\\Users\\Alaat\\.gemini\\antigravity\\scratch\\ssdp\\data\\prompts\\prompts.jsonl"
 }

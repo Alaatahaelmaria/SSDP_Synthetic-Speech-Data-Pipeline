@@ -1,13 +1,13 @@
 {
   "stage": "synthesis",
-  "total": 179,
-  "succeeded": 179,
+  "total": 184,
+  "succeeded": 184,
   "failed": 0,
-  "avg_duration": 7.636,
+  "avg_duration": 7.627,
   "voices_used": [
     "ar-EG-SalmaNeural",
     "ar-EG-ShakirNeural"
   ],
-  "generated_at": "2026-05-11T06:50:56.562514+00:00",
+  "generated_at": "2026-05-11T08:10:57.294941+00:00",
   "output_file": "C:\\Users\\Alaat\\.gemini\\antigravity\\scratch\\ssdp\\data\\manifests\\synthesis_results.jsonl"
 }

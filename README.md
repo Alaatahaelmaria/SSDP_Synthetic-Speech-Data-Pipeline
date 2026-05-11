@@ -21,21 +21,39 @@ SSDP is a four-stage pipeline that produces training-ready **synthetic Egyptian 
 
 ## Quick Start
 
-```bash
-# 1. Install dependencies
-pip install -r requirements.txt
+### 1. Create & activate a conda environment
+```powershell
+conda create -n ssdp python=3.13
+conda activate ssdp
+```
 
-# 2. Run all stages (review server is interactive — stop it with Ctrl+C when done)
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+> **Windows:** `pydub` needs `ffmpeg` for WAV conversion. Install via:
+> ```powershell
+> winget install Gyan.FFmpeg
+> ```
+> Without ffmpeg the pipeline still works — audio is kept as MP3.
+
+### 3. Run the pipeline
+```bash
+# Run all stages end-to-end
 python run_pipeline.py
 
 # Or run individual stages
 python run_pipeline.py --stage 1        # generate prompts
-python run_pipeline.py --stage 2        # synthesize audio
-python run_pipeline.py --stage 3        # launch review UI at http://localhost:8000
+python run_pipeline.py --stage 2        # synthesize audio (resumable)
+python run_pipeline.py --stage 3        # launch review UI → http://localhost:8000
 python run_pipeline.py --stage 4        # export approved dataset
 ```
 
-> **Note for Windows users:** `pydub` requires `ffmpeg`. Install it and add it to PATH, or install via `winget install Gyan.FFmpeg`.
+> **If `python` is not recognized** (Windows / Anaconda), use the full path:
+> ```powershell
+> & "C:\Users\<YourName>\anaconda3\python.exe" run_pipeline.py
+> ```
 
 ---
 
@@ -92,6 +110,8 @@ python run_pipeline.py --stage 4        # export approved dataset
 **Form:** Self-contained browser application served by a Python stdlib HTTP server (no external web framework required).
 
 **URL:** `http://localhost:8000` (auto-opens in browser)
+
+![SSDP Review Dashboard](assets/review_dashboard.png)
 
 **Reviewer workflow:**
 1. Browse cards showing Arabic text + embedded audio player
