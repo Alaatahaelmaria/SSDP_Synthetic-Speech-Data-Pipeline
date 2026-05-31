@@ -333,4 +333,4 @@ df = pd.read_csv("data/export/csv/train.csv")
 
 ---
 
-*Built for Olimi AI · 2026 · Egyptian Arabic STT fine-tuning*
+*Alaa Taha El Maria · 2026 · Egyptian Arabic STT fine-tuning*
